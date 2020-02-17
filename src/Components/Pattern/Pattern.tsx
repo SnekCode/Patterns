@@ -12,13 +12,24 @@ interface IPatternProps {
 const Pattern:React.FC<IPatternProps> = ({pattern,state}) => {
 
     const [appState,setState] = state;
+    const [patternState,setPatternState] = useState({delete: false});
+
+    const handleClearAll = () => {
+        if(patternState.delete){
+            setState({...appState,pattern: generatePattern(appState.numberRows,appState.numberColumns)});
+            setPatternState({delete: false})
+        }else{
+            setPatternState({delete: true});
+            setTimeout(() => setPatternState({delete: false}),1500)
+        }
+    };
 
     return (
         <div className={'no-select'}>
             <div className={'flex'}>
-                <button className={'f7 w2'}
+                <button className={`f7 w2 ${patternState.delete ? 'bg-red' : ''}`}
             // Clears whole pattern
-                onClick={() => setState({...appState,pattern: generatePattern(appState.numberRows,appState.numberColumns)})}
+                onClick={() => handleClearAll()}
                 > x all </button>
 
 
