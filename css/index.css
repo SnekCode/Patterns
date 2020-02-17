@@ -1,0 +1,13 @@
+.cell {
+    height: 2rem;
+    width: 2rem;
+    border: 1px solid slategray;
+}
+
+.app {
+    margin: .5rem;
+}
+
+.no-select {
+    user-select: none;
+}
